@@ -1,0 +1,31 @@
+const {Module} = require('../main')
+
+const {
+
+    MODE
+
+} = require('../config');
+
+const {
+
+    getJson
+
+} = require('./misc/misc');
+
+const {
+
+   skbuffer
+
+} = require('raganork-bot');
+
+let w = MODE == 'public' ? false : true
+
+Module({pattern: "احزر ?(.*)",fromMe: w,desc: 'malayalam random STATUS'}, async(m) => {
+
+const { result } = await getJson('https://pastebin.com/raw/Hbp2DrJd')
+
+const mask = result[Math.floor(Math.random()*result.length)];       
+
+await m.sendReply({url: mask},'image')
+
+});
